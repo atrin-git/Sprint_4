@@ -11,32 +11,30 @@ import org.openqa.selenium.chrome.ChromeDriver;
 import static org.junit.Assert.assertTrue;
 
 public class MainPageLinksTests {
-    private WebDriver driver;
+    private WebDriver webDriver;
     private final String mainPageUrl = "https://qa-scooter.praktikum-services.ru";
     private final String yandexUrl = "//yandex.ru";
     private final String scooterUrl = "//qa-scooter.praktikum-services.ru";
 
-    public MainPageLinksTests() { }
-
     @Before
     public void startUp() {
         WebDriverManager.chromedriver().setup();
-        driver = new ChromeDriver();
-        driver.get(mainPageUrl);
+        this.webDriver = new ChromeDriver();
+        this.webDriver.get(this.mainPageUrl);
     }
 
     @After
     public void tearDown() {
-        driver.quit();
+        this.webDriver.quit();
     }
 
     @Test
     public void checkYandexLinkIsCorrect() {
-        MainPage mainPage = new MainPage(driver);
+        MainPage mainPage = new MainPage(this.webDriver);
 
         assertTrue(
-            "Yandex Logo Link doesn't go to " + yandexUrl,
-            mainPage.getYandexLogoLink().contains(yandexUrl)
+            "Yandex Logo Link doesn't go to " + this.yandexUrl,
+            mainPage.getYandexLogoLink().contains(this.yandexUrl)
         );
 
         assertTrue(
@@ -47,11 +45,11 @@ public class MainPageLinksTests {
 
     @Test
     public void checkScooterLinkIsCorrect() {
-        MainPage mainPage = new MainPage(driver);
+        MainPage mainPage = new MainPage(this.webDriver);
 
         assertTrue(
-            "Scooter Logo Link doesn't go to " + scooterUrl,
-            mainPage.getScooterLogoLink().contains(scooterUrl)
+            "Scooter Logo Link doesn't go to " + this.scooterUrl,
+            mainPage.getScooterLogoLink().contains(this.scooterUrl)
         );
     }
 }

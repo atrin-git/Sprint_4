@@ -1,6 +1,8 @@
 package ui;
 
 import io.github.bonigarcia.wdm.WebDriverManager;
+import org.openqa.selenium.chrome.ChromeDriver;
+import org.openqa.selenium.safari.SafariDriver;
 import ui.pages.MainPage;
 import ui.pages.OrderPage;
 import org.hamcrest.MatcherAssert;
@@ -10,7 +12,6 @@ import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.junit.runners.Parameterized;
 import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.chrome.ChromeDriver;
 
 import static org.hamcrest.CoreMatchers.containsString;
 
@@ -55,14 +56,14 @@ public class OrderPageTests {
     @Before
     public void startUp() {
         WebDriverManager.chromedriver().setup();
-        webDriver = new ChromeDriver();     // здесь тест падает на подтверждении оформления заказа
+        this.webDriver = new ChromeDriver();     // здесь тест падает на подтверждении оформления заказа
         //webDriver = new SafariDriver();   // здесь тест проходит успешно
-        webDriver.get(mainPageUrl);
+        this.webDriver.get(mainPageUrl);
     }
 
     @After
     public void tearDown() {
-        webDriver.quit();
+        this.webDriver.quit();
     }
 
     @Test
@@ -77,7 +78,7 @@ public class OrderPageTests {
         MatcherAssert.assertThat(
             "Problem with creating a new order",
             orderPage.getNewOrderSuccessMessage(),
-            containsString(expectedOrderSuccessText)
+            containsString(this.expectedOrderSuccessText)
         );
     }
 
@@ -93,25 +94,25 @@ public class OrderPageTests {
         MatcherAssert.assertThat(
             "Problem with creating a new order",
             orderPage.getNewOrderSuccessMessage(),
-            containsString(expectedOrderSuccessText)
+            containsString(this.expectedOrderSuccessText)
         );
     }
 
     private void makeOrder(OrderPage orderPage) {
         orderPage.waitForLoadForm();
 
-        orderPage.setName(name);
-        orderPage.setSurname(surname);
-        orderPage.setAddress(address);
-        orderPage.setMetro(metro);
-        orderPage.setPhone(phone);
+        orderPage.setName(this.name);
+        orderPage.setSurname(this.surname);
+        orderPage.setAddress(this.address);
+        orderPage.setMetro(this.metro);
+        orderPage.setPhone(this.phone);
 
         orderPage.clickNextButton();
 
-        orderPage.setDate(date);
-        orderPage.setTerm(term);
-        orderPage.setColor(color);
-        orderPage.setComment(comment);
+        orderPage.setDate(this.date);
+        orderPage.setTerm(this.term);
+        orderPage.setColor(this.color);
+        orderPage.setComment(this.comment);
 
         orderPage.makeOrder();
     }

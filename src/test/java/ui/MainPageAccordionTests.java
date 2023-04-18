@@ -17,7 +17,7 @@ import static org.junit.Assert.fail;
 
 @RunWith(Parameterized.class)
 public class MainPageAccordionTests {
-    private WebDriver driver;
+    private WebDriver webDriver;
     private final String mainPageUrl = "https://qa-scooter.praktikum-services.ru";
     private final int numberOfElement;
     private final String expectedHeaderText;
@@ -46,36 +46,36 @@ public class MainPageAccordionTests {
     @Before
     public void startUp() {
         WebDriverManager.chromedriver().setup();
-        driver = new ChromeDriver();
-        driver.get(mainPageUrl);
+        this.webDriver = new ChromeDriver();
+        this.webDriver.get(this.mainPageUrl);
     }
 
     @After
     public void tearDown() {
-        driver.quit();
+        this.webDriver.quit();
     }
 
     @Test
     public void checkAccordionIsOpened() {
-        MainPage mainPage = new MainPage(driver);
+        MainPage mainPage = new MainPage(this.webDriver);
 
         mainPage.clickOnCookieAcceptButton();
 
-        mainPage.clickAccordionHeader(numberOfElement);
-        mainPage.waitForLoadItem(numberOfElement);
+        mainPage.clickAccordionHeader(this.numberOfElement);
+        mainPage.waitForLoadItem(this.numberOfElement);
 
-        if (mainPage.isAccordionItemDisplayed(numberOfElement)) {
-            MatcherAssert.assertThat("Problems with text in accordion header #" + numberOfElement,
-                    expectedHeaderText,
-                    equalTo(mainPage.getAccordionHeaderText(numberOfElement))
+        if (mainPage.isAccordionItemDisplayed(this.numberOfElement)) {
+            MatcherAssert.assertThat("Problems with text in accordion header #" + this.numberOfElement,
+                    this.expectedHeaderText,
+                    equalTo(mainPage.getAccordionHeaderText(this.numberOfElement))
             );
-            MatcherAssert.assertThat("Problems with text in accordion item #" + numberOfElement,
-                    expectedItemText,
-                    equalTo(mainPage.getAccordionItemText(numberOfElement))
+            MatcherAssert.assertThat("Problems with text in accordion item #" + this.numberOfElement,
+                    this.expectedItemText,
+                    equalTo(mainPage.getAccordionItemText(this.numberOfElement))
             );
         }
         else {
-            fail("Accordion header item #" + numberOfElement + "didn't load");
+            fail("Accordion header item #" + this.numberOfElement + "didn't load");
         }
     }
 }
