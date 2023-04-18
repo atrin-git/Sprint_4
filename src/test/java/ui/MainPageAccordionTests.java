@@ -15,20 +15,42 @@ import org.hamcrest.MatcherAssert;
 import static org.hamcrest.CoreMatchers.equalTo;
 import static org.junit.Assert.fail;
 
+/**
+ * Тест для проверки работы и содержимого раскрывающегося блока "Вопросы о важном"
+ */
 @RunWith(Parameterized.class)
 public class MainPageAccordionTests {
+    /** Веб-драйвер */
     private WebDriver webDriver;
+
+    /** URL тестируемой страницы */
     private final String mainPageUrl = "https://qa-scooter.praktikum-services.ru";
+
+    /** Порядковый номер элемента аккордеона */
     private final int numberOfElement;
+
+    /** Ожидаемый текст в заголовке элемента аккордеона */
     private final String expectedHeaderText;
+
+    /** Ожидаемый текст в раскрывающемся блоке элемента аккордеона */
     private final String expectedItemText;
 
+    /**
+     * Конструктор класса MainPageAccordionTests
+     * @param numberOfAccordionItem Порядковый номер элемента аккордеона
+     * @param expectedHeaderText Ожидаемый текст в заголовке элемента аккордеона
+     * @param expectedItemText Ожидаемый текст в раскрывающемся блоке элемента аккордеона
+     */
     public MainPageAccordionTests(int numberOfAccordionItem, String expectedHeaderText, String expectedItemText) {
         this.numberOfElement = numberOfAccordionItem;
         this.expectedHeaderText = expectedHeaderText;
         this.expectedItemText = expectedItemText;
     }
 
+    /**
+     * Параметризация теста
+     * @return массив параметров
+     */
     @Parameterized.Parameters
     public static Object[][] setTestData() {
         return new Object[][] {
@@ -55,8 +77,11 @@ public class MainPageAccordionTests {
         this.webDriver.quit();
     }
 
+    /**
+     * Тест для проверки работы аккордеона и для проверки текста в заголовках и в раскрывающихся блоках
+     */
     @Test
-    public void checkAccordionIsOpened() {
+    public void checkAccordionIsCorrect() {
         MainPage mainPage = new MainPage(this.webDriver);
 
         mainPage.clickOnCookieAcceptButton();

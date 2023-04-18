@@ -10,10 +10,20 @@ import org.openqa.selenium.chrome.ChromeDriver;
 
 import static org.junit.Assert.assertTrue;
 
+/**
+ * Класс тестов для проверки корреткности ссылок на главной странице
+ */
 public class MainPageLinksTests {
+    /** Веб-драйвер */
     private WebDriver webDriver;
+
+    /** URL тестируемой страницы */
     private final String mainPageUrl = "https://qa-scooter.praktikum-services.ru";
+
+    /** URL ожидаемый для логотипа "Яндекс" */
     private final String yandexUrl = "//yandex.ru";
+
+    /** URL ожидаемый для логотипа "Самокат" */
     private final String scooterUrl = "//qa-scooter.praktikum-services.ru";
 
     @Before
@@ -28,6 +38,9 @@ public class MainPageLinksTests {
         this.webDriver.quit();
     }
 
+    /**
+     * Тест для проверки открытия корректной ссылки в логотипе "Яндекс" в новом окне
+     */
     @Test
     public void checkYandexLinkIsCorrect() {
         MainPage mainPage = new MainPage(this.webDriver);
@@ -43,6 +56,9 @@ public class MainPageLinksTests {
         );
     }
 
+    /**
+     * Тест для проверки открытия корректной ссылки в логотипе "Самокат"
+     */
     @Test
     public void checkScooterLinkIsCorrect() {
         MainPage mainPage = new MainPage(this.webDriver);
