@@ -1,6 +1,6 @@
-package model;
+package ui;
 
-import model.pages.MainPage;
+import ui.pages.MainPage;
 
 import io.github.bonigarcia.wdm.WebDriverManager;
 import org.junit.After;

@@ -1,8 +1,8 @@
-package model;
+package ui;
 
 import io.github.bonigarcia.wdm.WebDriverManager;
-import model.pages.MainPage;
-import model.pages.OrderPage;
+import ui.pages.MainPage;
+import ui.pages.OrderPage;
 import org.hamcrest.MatcherAssert;
 import org.junit.After;
 import org.junit.Before;
