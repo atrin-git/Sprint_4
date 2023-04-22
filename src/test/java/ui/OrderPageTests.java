@@ -2,9 +2,8 @@ package ui;
 
 import io.github.bonigarcia.wdm.WebDriverManager;
 import org.openqa.selenium.chrome.ChromeDriver;
-import org.openqa.selenium.safari.SafariDriver;
-import ui.pages.MainPage;
-import ui.pages.OrderPage;
+import pageObjects.MainPage;
+import pageObjects.OrderPage;
 import org.hamcrest.MatcherAssert;
 import org.junit.After;
 import org.junit.Before;
@@ -70,7 +69,7 @@ public class OrderPageTests {
      * Параметры для запуска теста
      * @return массив параметров
      */
-    @Parameterized.Parameters
+    @Parameterized.Parameters(name = "Оформление заказа. Позитивный сценарий. Пользователь: {0} {1}")
     public static Object[][] setDataForOrder() {
         return new Object[][] {
             {"Клава", "Птичкина", "Москва, ул. Дорожная, д. 12, кв. 34", "Сокол", "81234567890", "01.05.2023", "четверо суток", "чёрный жемчуг", "Коммент!"},

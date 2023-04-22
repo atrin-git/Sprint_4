@@ -1,6 +1,6 @@
 package ui;
 
-import ui.pages.MainPage;
+import pageObjects.MainPage;
 
 import io.github.bonigarcia.wdm.WebDriverManager;
 import org.junit.After;
@@ -51,7 +51,7 @@ public class MainPageAccordionTests {
      * Параметризация теста
      * @return массив параметров
      */
-    @Parameterized.Parameters
+    @Parameterized.Parameters(name = "Текст в блоке\"Вопросы о важном\". Проверяемый элемент: {1}")
     public static Object[][] setTestData() {
         return new Object[][] {
             {0, "Сколько это стоит? И как оплатить?", "Сутки — 400 рублей. Оплата курьеру — наличными или картой."},
